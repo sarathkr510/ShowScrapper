@@ -42,7 +42,7 @@ public class ScraperServiceClient : IScraperServiceClient
 
         while (true)
         {
-            var getShowsResult = await GetShows(page, client);
+            var getShowsResult = await GetShowsAsync(page, client);
             if (!getShowsResult.Success)
             {
                 _logger.LogCritical(getShowsResult.ErrorMessage);
@@ -58,9 +58,9 @@ public class ScraperServiceClient : IScraperServiceClient
 
             foreach (var show in shows)
             {
-                var showEntity = await AddShow(show);
+                var showEntity = await AddShowAsync(show);
 
-                var getCastsResult = await GetCast(show.Id, client);
+                var getCastsResult = await GetCastAsync(show.Id, client);
                 if (!getCastsResult.Success)
                 {
                     _logger.LogCritical(getCastsResult.ErrorMessage);
@@ -87,7 +87,7 @@ public class ScraperServiceClient : IScraperServiceClient
             await _castRepository.AddAsync(castEntity);
     }
 
-    private async Task<Show> AddShow(ShowModel show)
+    private async Task<Show> AddShowAsync(ShowModel show)
     {
         var showEntity = new Show(show.Name);
 
@@ -99,7 +99,7 @@ public class ScraperServiceClient : IScraperServiceClient
         return showEntity;
     }
 
-    private async Task<BaseDTO<List<ShowModel>>> GetShows(int page, HttpClient client)
+    private async Task<BaseDTO<List<ShowModel>>> GetShowsAsync(int page, HttpClient client)
     {
         var result = new BaseDTO<List<ShowModel>>();
 
@@ -125,7 +125,7 @@ public class ScraperServiceClient : IScraperServiceClient
         return result;
     }
 
-    private async Task<BaseDTO<List<CastModel>>> GetCast(int showId, HttpClient client)
+    private async Task<BaseDTO<List<CastModel>>> GetCastAsync(int showId, HttpClient client)
     {
         var result = new BaseDTO<List<CastModel>>();
 
