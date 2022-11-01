@@ -48,11 +48,11 @@ public class ShowController: ApiController
     
     [HttpGet]
     [Route("UpdateDatabase")]
-    public Task<IAsyncResult> UpdateDatabase()
+    public IActionResult UpdateDatabase()
     {
         //Recurring Job - this job is executed many times on the specified cron schedule
         RecurringJob.AddOrUpdate(() => _scraperServiceClient.ExecuteScraping(), Cron.Hourly);
 
-        return Ok("Triggered");
+        return Ok(new { message = "Backend api has been called, to update the database" } );
     }
 }
