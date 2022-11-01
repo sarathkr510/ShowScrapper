@@ -19,6 +19,16 @@ var builder = WebApplication.CreateBuilder(args);
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
 
+    
+    var sqliteOptions = new SQLiteStorageOptions();
+    builder.Services.AddHangfire(configuration => configuration
+        .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+        .UseSimpleAssemblyNameTypeSerializer()
+        .UseRecommendedSerializerSettings()
+        //.UseMemoryStorage(new MemoryStorageOptions { JobExpirationCheckInterval = TimeSpan.FromMinutes(10) })
+        .UseSQLiteStorage("Filename=tvmaze-db;", sqliteOptions)
+    );
+    builder.Services.AddHangfireServer();
     builder.Services.AddControllers(options =>
     {
         var cacheProfiles = builder.Configuration
@@ -46,6 +56,7 @@ var app = builder.Build();
         app.UseSwaggerUI();
     }
 
+    app.UseHangfireDashboard();
     app.UseExceptionHandler("/api/error");
     //app.UseHangfireServer();  
     app.UseHttpsRedirection();

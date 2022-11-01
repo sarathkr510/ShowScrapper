@@ -24,6 +24,7 @@ pThis application also exposes an API that provides cast of the tv shows in TvMa
 * [Polly](https://github.com/App-vNext/Polly)
 * [Swagger](https://swagger.io/)
 * [ErrorOr](https://github.com/amantinband/error-or)
+* [Hangfire](https://www.hangfire.io/)
 * [Docker Desktop with Kubernetes Enabled](https://www.docker.com/products/docker-desktop/)
 
 
