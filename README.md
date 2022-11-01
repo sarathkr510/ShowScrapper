@@ -2,7 +2,7 @@
 
 TvMaze Show Scrapper is an application that ingests Shows and Cast Information in to internal database. 
 
-pThis application also exposes an API that provides cast of the tv shows in TvMaze Database, which can be enriched further in other systems. 
+This application also exposes an API that provides cast of the tv shows in TvMaze Database, which can be enriched further in other systems. 
 
 ## Architecture Patterns and Design Patterns
 
