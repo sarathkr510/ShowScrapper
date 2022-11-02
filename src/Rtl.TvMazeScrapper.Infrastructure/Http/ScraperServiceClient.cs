@@ -33,7 +33,8 @@ public class ScraperServiceClient : IScraperServiceClient
     public async Task ExecuteScraping()
     {
         var client = _httpClientFactory.CreateClient(HttpClientConstants.THROTTLED_HTTP_CLIENT);
-        client.DefaultRequestHeaders.Add(HttpClientConstants.USER_AGENT_HEADER, HttpClientConstants.USER_AGENT_UNIQUE_ID);
+        client.DefaultRequestHeaders.Add(HttpClientConstants.USER_AGENT_HEADER, 
+            HttpClientConstants.USER_AGENT_UNIQUE_ID);
 
         var page = 0;
         var dbShows = await _showRepository.CountAsync();
