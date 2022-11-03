@@ -47,12 +47,10 @@ public class ShowController: ApiController
     [Route("UpdateDatabase")]
     public IActionResult UpdateShowDb()
     {
-        //Recurring Job - this job is executed many times on the specified cron schedule
-       // RecurringJob.AddOrUpdate(() => _scraperServiceClient.ExecuteScraping(), Cron.Hourly);
        var command = new ShowCommandRequest();
        _sender.Send(command);
 
         return Ok(new { message = "Backend api has been called, to update the database" } );
     }
-    
 }
+    
