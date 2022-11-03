@@ -8,13 +8,13 @@ using Rtl.TvMazeScrapper.Domain.Entity;
 using Rtl.TvMazeScrapper.Domain.Interfaces.Repository;
 using Rtl.TvMazeScrapper.Domain.Interfaces.ServiceClients;
 using Rtl.TvMazeScrapper.Domain.Interfaces.Services;
-using Rtl.TvMazeScrapper.Domain.Services;
 using Rtl.TvMazeScrapper.Domain.Settings;
 using Rtl.TvMazeScrapper.Infrastructure.BackgroundServices;
 using Rtl.TvMazeScrapper.Infrastructure.Data;
 using Rtl.TvMazeScrapper.Infrastructure.Data.Repositories;
 using Rtl.TvMazeScrapper.Infrastructure.Http;
 using Rtl.TvMazeScrapper.Infrastructure.Http.Retry;
+using Rtl.TvMazeScrapper.Infrastructure.Services;
 
 namespace Rtl.TvMazeScrapper.Infrastructure;
 

@@ -46,6 +46,7 @@ var builder = WebApplication.CreateBuilder(args);
         {
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "RTL TvMaze Scrapper", Version = "v1.0.0" });
         });
+    
 }
 
 var app = builder.Build();
@@ -57,6 +58,7 @@ var app = builder.Build();
     }
 
     app.UseHangfireDashboard();
+    app.UseResponseCaching();
     app.UseExceptionHandler("/api/error");
     //app.UseHangfireServer();  
     app.UseHttpsRedirection();

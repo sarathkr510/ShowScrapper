@@ -29,6 +29,7 @@ namespace Rtl.TvMazeScrapper.Infrastructure.Data.Repositories
                 .Include(i => i.Casts)
                 .Skip(pageSize * (page - 1))
                 .Take(pageSize)
+                .OrderBy(o=>o.Id)
                 .ToListAsync();
         }
     }

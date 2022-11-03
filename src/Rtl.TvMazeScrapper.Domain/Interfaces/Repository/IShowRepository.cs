@@ -7,5 +7,5 @@ namespace Rtl.TvMazeScrapper.Domain.Interfaces.Repository;
 
 public interface IShowRepository<T> : IBaseRepository<T> where T : EntityBase
 {
-    Task<List<Show>> GetShowsByPageNumber(GetShowsRequestDto queryDTO);
+    Task<List<Show>> GetShowsByPageNumber(GetShowsRequestDto queryDto);
 } 
