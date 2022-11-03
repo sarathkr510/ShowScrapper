@@ -1,6 +1,6 @@
-﻿namespace Rtl.TvMazeScrapper.Application.Commands.Show;
+﻿using MediatR;
+using ErrorOr;
 
-public class ShowCommandRequest
-{
-    
-}
+namespace Rtl.TvMazeScrapper.Application.Commands.Show;
+
+public record ShowCommandRequest: IRequest;

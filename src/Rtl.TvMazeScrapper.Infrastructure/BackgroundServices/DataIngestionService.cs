@@ -8,15 +8,13 @@ namespace Rtl.TvMazeScrapper.Infrastructure.BackgroundServices;
 public class DataIngestionService: BackgroundService
 {
     private readonly IServiceProvider _provider;
-    
-
     public DataIngestionService(IServiceProvider provider)
     {
         _provider = provider;
     }
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        
+        //TODO: Try catch should be added
         await Ingest();
     }
 

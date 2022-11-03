@@ -17,6 +17,10 @@ public class ShowsQueryHandler: IRequestHandler<GetShowsRequestDto, ErrorOr<IEnu
         _mapper = mapper;
     }
 
-    public async Task<ErrorOr<IEnumerable<ShowDto>>> Handle(GetShowsRequestDto request, CancellationToken cancellationToken) =>
-        await _showService.GetShowsByPageNumber(request);
+    public async Task<ErrorOr<IEnumerable<ShowDto>>> Handle(GetShowsRequestDto request,
+        CancellationToken cancellationToken)
+    {
+       return await _showService.GetShowsByPageNumber(request);
+    }
+
 }

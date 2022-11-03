@@ -30,7 +30,8 @@ public class ValidationBehavior<TRequest, TResponse> :
             return await next();
         }
 
-        var errors = validationResult.Errors.ConvertAll(validationFailure => Error.Validation(validationFailure.PropertyName, validationFailure.ErrorMessage));
+        var errors = validationResult.Errors.ConvertAll(validationFailure 
+            => Error.Validation(validationFailure.PropertyName, validationFailure.ErrorMessage));
         return (dynamic)errors;
     }
 }

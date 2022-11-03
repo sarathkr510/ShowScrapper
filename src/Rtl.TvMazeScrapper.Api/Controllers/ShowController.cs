@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
-using ErrorOr;
-using Hangfire;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Rtl.TvMazeScrapper.Application.Commands.Show;
 using Rtl.TvMazeScrapper.Contracts.ViewModels.Request;
 using Rtl.TvMazeScrapper.Domain.DTO;
-using Rtl.TvMazeScrapper.Domain.Extensions;
-using Rtl.TvMazeScrapper.Domain.Interfaces.ServiceClients;
 using Rtl.TvMazeScrapper.Domain.Interfaces.Services;
 
 namespace Rtl.TvMazeScrapper.Api.Controllers;
@@ -20,15 +16,12 @@ public class ShowController: ApiController
     private readonly IShowService _showService;
     private readonly IMapper _mapper;
     private readonly ISender _sender;
-    private readonly IScraperServiceClient _scraperServiceClient;
-    public ShowController(ILogger<ShowController> logger, IShowService showService, IMapper mapper, ISender sender,
-        IScraperServiceClient scraperServiceClient)
+    public ShowController(ILogger<ShowController> logger, IShowService showService, IMapper mapper, ISender sender)
     {
         _logger = logger;
         _showService = showService;
         _mapper = mapper;
         _sender = sender;
-        _scraperServiceClient = scraperServiceClient;
     }
 
     [HttpPost, Route("GetShows")]
@@ -45,14 +38,21 @@ public class ShowController: ApiController
         
 
     }
-    
+    #if DEBUG
+        [ApiExplorerSettings(IgnoreApi = false)]
+    #else
+        [ApiExplorerSettings(IgnoreApi = true)]
+    #endif 
     [HttpGet]
     [Route("UpdateDatabase")]
-    public IActionResult UpdateDatabase()
+    public IActionResult UpdateShowDb()
     {
         //Recurring Job - this job is executed many times on the specified cron schedule
-        RecurringJob.AddOrUpdate(() => _scraperServiceClient.ExecuteScraping(), Cron.Hourly);
+       // RecurringJob.AddOrUpdate(() => _scraperServiceClient.ExecuteScraping(), Cron.Hourly);
+       var command = new ShowCommandRequest();
+       _sender.Send(command);
 
         return Ok(new { message = "Backend api has been called, to update the database" } );
     }
+    
 }
